@@ -44,6 +44,20 @@
 
 脚本只依赖 Python 3 标准库。以下路径按默认的 `~/.codex` 写；设置了 `CODEX_HOME` 的话换成对应目录。
 
+### 让 Codex 帮你装（推荐）
+
+在 Codex 里发这段话：
+
+```text
+用 $skill-installer 从 https://github.com/Tonygu-Cat/codex-skills 安装 task-operations、context-handoff、leader 三个 skill。然后按仓库 README：把 examples/AGENTS.md 合并进我的 ~/.codex/AGENTS.md（保留我已有的内容，不要覆盖），把 examples/hooks.json 合并进 ~/.codex/hooks.json，并把里面的 Python 命令改成我电脑上能用的。改之前先备份这两个文件，改完告诉我需要信任哪些钩子。
+```
+
+装完重启 Codex，按提示信任 4 个钩子。
+
+`$skill-installer` 只复制 Skill 目录，不改 AGENTS.md 和 hooks.json。只装 Skill 时，task-operations 不会自动加载（要手动输入 `$task-operations`），也没有结束检查、压缩后的方向卡注入和简洁优先等全局规则。
+
+### 手动安装
+
 1. 把 `task-operations/`、`context-handoff/`、`leader/` 三个目录复制到 `~/.codex/skills/`。
 2. 把 `examples/AGENTS.md` 的内容合并进 `~/.codex/AGENTS.md`（合并，不要覆盖已有内容）。不想用某一节就删掉那一节。
 3. 把 `examples/hooks.json` 合并进 `~/.codex/hooks.json`。Windows 上如果 Python 命令不是 `python`，改成实际的命令或完整路径。下次启动 Codex 时按提示信任这些钩子；未信任的钩子不会运行。
