@@ -1,0 +1,60 @@
+{
+  "description": "codex-skills hooks: task-operations stop guard and context-handoff direction card / pre-compaction guard",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.codex/skills/task-operations/scripts/stop_guard.py\"",
+            "commandWindows": "& python \"$HOME\\.codex\\skills\\task-operations\\scripts\\stop_guard.py\"",
+            "timeout": 10,
+            "statusMessage": "Checking task continuation contract"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "^(manual|auto)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -S -B \"$HOME/.codex/skills/context-handoff/scripts/precompact_guard.py\" --all-sessions --config \"$HOME/.codex/skills/context-handoff/settings.json\"",
+            "commandWindows": "& python -S -B \"$HOME\\.codex\\skills\\context-handoff\\scripts\\precompact_guard.py\" --all-sessions --config \"$HOME\\.codex\\skills\\context-handoff\\settings.json\"",
+            "timeout": 2,
+            "async": false,
+            "statusMessage": "context-handoff: stop only a validated sealed handoff"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "^compact$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -S -B \"$HOME/.codex/skills/context-handoff/scripts/direction_card_hook.py\" --config \"$HOME/.codex/skills/context-handoff/settings.json\"",
+            "commandWindows": "& python -S -B \"$HOME\\.codex\\skills\\context-handoff\\scripts\\direction_card_hook.py\" --config \"$HOME\\.codex\\skills\\context-handoff\\settings.json\"",
+            "timeout": 10,
+            "statusMessage": "context-handoff: direction card after compaction"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -S -B \"$HOME/.codex/skills/context-handoff/scripts/direction_card_hook.py\" --config \"$HOME/.codex/skills/context-handoff/settings.json\"",
+            "commandWindows": "& python -S -B \"$HOME\\.codex\\skills\\context-handoff\\scripts\\direction_card_hook.py\" --config \"$HOME\\.codex\\skills\\context-handoff\\settings.json\"",
+            "timeout": 10,
+            "statusMessage": "context-handoff: escalate unanswered handoff reminder"
+          }
+        ]
+      }
+    ]
+  }
+}

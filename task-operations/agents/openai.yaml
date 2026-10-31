@@ -1,0 +1,7 @@
+interface:
+  display_name: "Task Operations"
+  short_description: "Keep approved tasks moving to verified completion"
+  default_prompt: "Use $task-operations to drive this task to verified completion."
+policy:
+  allow_implicit_invocation: false
+

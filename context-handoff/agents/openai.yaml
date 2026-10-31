@@ -1,0 +1,6 @@
+interface:
+  display_name: "Context Handoff"
+  short_description: "Next step every turn plus a durable long-task handoff"
+  default_prompt: "Use $context-handoff to keep this project moving: end every turn with the next step and the exact user action, maintain a durable handoff, and safely roll authorized work into a verified successor task."
+policy:
+  allow_implicit_invocation: true

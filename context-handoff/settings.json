@@ -1,0 +1,8 @@
+{
+  "max_document_bytes": 61440,
+  "max_current_state_lines": 80,
+  "handoff_reminder_compactions": 10,
+  "handoff_reminder_residue": 0.25,
+  "direction_card_max_chars": 1500,
+  "handoff_reminder_repeat_turns": 4
+}
